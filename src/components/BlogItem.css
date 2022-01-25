@@ -1,0 +1,118 @@
+.blog-hero {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
+    padding: 0 16px;
+    text-align: center;
+  }
+  .blog-hero__title {
+    color: #2B2F51;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+    margin-bottom: 24px; 
+    max-width: 520px;
+    width: 100%;
+  }
+  .blog-hero__img {
+    height: 240px;
+    max-width: 288px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .profile {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .profile__img {
+    border-radius: 50%;
+    height: 40px;
+    margin-bottom: 8px;
+    object-fit: cover;
+    width: 40px;
+  }
+  .profile__name {
+    display: block;
+    font-family: 'Source Serif Pro', serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  .blog__content {
+    margin-bottom: 80px;
+    padding: 0 16px;
+  }
+  .lead {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 32px;
+    margin: 0 auto 24px;
+    max-width: 620px;
+    width: 100%;
+  }
+  .blog__content div {
+    margin: 0 auto;
+    max-width: 620px;
+    width: 100%;
+  }
+  .inline-img {
+    margin: 64px auto;
+    max-width: 840px;
+    width: 100%;
+  }
+  .inline-img__img {
+    display: block;
+    height: 288px;
+    margin-bottom: 24px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .inline-img__content {
+    padding: 0 16px;
+    text-align: center;
+  }
+  .inline-img__title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  .inline-img__text {
+    color: #6E729B;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  @media only screen and (min-width: 768px) {
+    .inline-img {
+      margin: 80px auto;
+    }
+    .inline-img__img {
+      height: 480px
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+  .lead {
+    font-size: 24px;
+  }
+    .blog-hero {
+      flex-direction: row;
+    }
+    .blog-hero__title {
+      font-size: 64px;
+      line-height: 80px;
+      margin-bottom: 0;
+      margin-right: 40px;
+      text-align: left;
+    }
+    .blog-hero__img {
+      max-width: 510px;
+      height: 432px;
+    }
+  }
