@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './BlogListing.css';
-import ContensisClient from '../connection'
-import { Link } from 'react-router-dom'
+// Get the Contensis connection details and connect
+import ContensisClient from '../connection';
+
 
 const BlogListing = () => {
   const [error, setError] = useState(null);
@@ -9,17 +11,20 @@ const BlogListing = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-      const { Query, Op } = require("contensis-delivery-api");
-      const blogsQuery = new Query(
-        Op.equalTo("sys.contentTypeId", "blogPost"),
-        Op.equalTo("sys.versionStatus", "latest")
-      );
-
-      ContensisClient.entries.search(blogsQuery)
+    // Import Query and Op to query the api
+    const { Query, Op } = require("contensis-delivery-api");
+    // Create a new query for the latest blog posts
+    const blogsQuery = new Query(
+      Op.equalTo("sys.contentTypeId", "blogPost"),
+      Op.equalTo("sys.versionStatus", "latest")
+    );
+    // Search using the query
+    ContensisClient.entries.search(blogsQuery)
       .then(
         (result) => {
-          setIsLoaded(true);
+          // Set the items
           setItems(result.items);
+          setIsLoaded(true);
         },
         (error) => {
           setIsLoaded(true);
@@ -34,21 +39,24 @@ const BlogListing = () => {
     return <div>Loading...</div>;
   } else {
     return (
-      <ul className="blogs">
-         {items.map(item => (
-           <li className="blog-card" key={item.sys.id}>
-            <Link to={`/blog/${item.sys.id}`}>
-                <h2 className="blog-card__title mobile">{ item.entryTitle }</h2>
+      <>
+        <h1 className="blogs__title">Our blogs</h1>
+        <ul className="blogs">
+          {items.map(item => (
+            <li className="blog-card" key={item.sys.id}>
+              <Link to={`/blog/${item.sys.id}`}>
+                <h2 className="blog-card__title mobile">{item.entryTitle}</h2>
                 <img className="blog-card__img" src={`http://live.leif.zenhub.contensis.cloud${item.thumbnailImage.asset.sys.uri}`} alt={item.thumbnailImage.altText} />
                 <div className="related-blog__content">
-                    <h2 className="blog-card__title desktop">{ item.entryTitle }</h2>
-                    <p className="blog-card__text">{ item.leadParagraph }</p>
-                    <span className="category">{ item.category.entryTitle }</span>
+                  <h2 className="blog-card__title desktop">{item.entryTitle}</h2>
+                  <p className="blog-card__text">{item.leadParagraph}</p>
+                  <span className="category">{item.category.entryTitle}</span>
                 </div>
-                </Link>
-          </li>
+              </Link>
+            </li>
           ))}
-    </ul>
+        </ul>
+      </>
     );
   }
 }

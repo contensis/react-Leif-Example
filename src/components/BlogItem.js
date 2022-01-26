@@ -1,15 +1,18 @@
-import { useParams } from "react-router-dom";
-import ContensisClient from '../connection';
-import './BlogItem.css';
 import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import './BlogItem.css';
+// Get the Contensis connection details and connect
+import ContensisClient from '../connection';
 
 const BlogItem = () => {
+    // Get the ID from the routing params
     let params = useParams();
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [blog, setBlog] = useState(null);
 
     useEffect(() => {
+        // Get the entry by the ID
         ContensisClient.entries.get({ id: params.blogId, linkDepth: 1 })
             .then(
                 (result) => {
