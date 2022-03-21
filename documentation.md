@@ -14,10 +14,10 @@ This app will pull in data from the Leif project in Contensis. The React demo is
 
 To get started:
 
-* Clone the Contensis React project *** Make sure we update the example here ***
+* Clone the Contensis React project
 
 ``` shell
-git clone https://path-to-the-project-in-github
+git clone https://gitlab.zengenti.com/ps-projects/leif-example-sites/react-leif-example.git
 ```
 
 * Change directory to the repo directory
@@ -43,6 +43,7 @@ Go to http://localhost:3000 and view the React app running in your browser.
 ## How it works
 
 ### Include the Contensis delivery API helper
+
 The Contensis delivery API helper contains classes to perform the repetitive tasks of retrieving content from the API.
 
 Include an instance of ```contensis-delivery-api``` in index.js:
@@ -87,9 +88,10 @@ let params = useParams();
 ContensisClient.entries.get({ id: params.blogId, linkDepth: 1 })
 ```
 
-Here's the full example:
+Here's a fuller example:
 
 ```js
+// components/BlogItem.js
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import './BlogItem.css';
@@ -126,39 +128,9 @@ const BlogItem = () => {
 
         return (
             <>
-                <div className="blog-hero">
-                    <h1 className="blog-hero__title">{blog.entryTitle}</h1>
-                    {blog.thumbnailImage && <img className="blog-hero__img" src={'http://live.leif.zenhub.contensis.cloud' + blog.thumbnailImage.asset.sys.uri} alt={blog.thumbnailImage.altText} />}
-                </div>
-                <div className="profile">
-                    {blog.author && <img className="profile__img" src={'http://live.leif.zenhub.contensis.cloud' + blog.author.photo.asset.sys.uri} alt={blog.author.photo.altText} />}
-                    {blog.author && <span className="profile__name">{blog.author.entryTitle}</span>}
-                    {blog.category && <span className="category">{blog.category.entryTitle}</span>}
-                </div>
-                <div className="blog__content">
-                    {blog.leadParagraph && <p className="lead">{blog.leadParagraph}</p>}
-
-                    {blog.postBody.map((field, idx) => {
-                        switch (field.type) {
-                            case 'markup':
-                                return (
-                                    <div key={idx} dangerouslySetInnerHTML={{ __html: field.value }} ></div>
-                                );
-                            case 'image':
-                                return (
-                                    <div key={idx} className="inline-img">
-                                        <img className="inline-img__img" src={'http://live.leif.zenhub.contensis.cloud' + field.value.asset.sys.uri} alt={field.value.altText} />
-                                        <div className="inline-img__content">
-                                            <h2 className="inline-img__title">{field.value.caption}</h2>
-                                        </div>
-                                    </div>
-                                );
-                            default:
-                                break;
-                        }
-                        return null
-                    })}
-                </div>
+              <h1 className="blog-hero__title">{blog.entryTitle}</h1>
+              <p className="lead">{blog.leadParagraph}</p>
+              ...etc
             </>
         )
     }
@@ -192,6 +164,7 @@ ContensisClient.entries.search(blogsQuery)
 Full example:
 
 ```js
+// components/BlogListing.js
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './BlogListing.css';
