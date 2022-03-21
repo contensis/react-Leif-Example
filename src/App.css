@@ -266,10 +266,17 @@ p {
 /* Global Blog Card Styles */
 .blog-card {
   padding: 16px;
+  position: relative;
 }
-.blog-card a {
+.blog-card__link {
   text-decoration: none;
 }
+.blog-card__link:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
 .blog-card:hover {
   box-shadow: 0px 16px 24px rgba(56, 33, 146, 0.07);
   cursor: pointer;
@@ -304,8 +311,6 @@ p {
 @media only screen and (min-width: 768px) {
   .blog-card {
     padding: 24px;
-  }
-  .blog-card a {
     align-items: center;
     display: flex;
   }
