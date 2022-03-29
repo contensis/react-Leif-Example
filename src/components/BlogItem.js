@@ -36,10 +36,10 @@ const BlogItem = () => {
             <>
                 <div className="blog-hero">
                     <h1 className="blog-hero__title">{blog.entryTitle}</h1>
-                    {blog.thumbnailImage && <img className="blog-hero__img" src={'http://live.leif.zenhub.contensis.cloud' + blog.thumbnailImage.asset.sys.uri} alt={blog.thumbnailImage.altText} />}
+                    {blog.thumbnailImage && <img className="blog-hero__img" src={'http://live.leif.contensis.cloud' + blog.thumbnailImage.asset.sys.uri} alt={blog.thumbnailImage.altText} />}
                 </div>
                 <div className="profile">
-                    {blog.author && <img className="profile__img" src={'http://live.leif.zenhub.contensis.cloud' + blog.author.photo.asset.sys.uri} alt={blog.author.photo.altText} />}
+                    {blog.author && <img className="profile__img" src={'http://live.leif.contensis.cloud' + blog.author.photo.asset.sys.uri} alt={blog.author.photo.altText} />}
                     {blog.author && <span className="profile__name">{blog.author.entryTitle}</span>}
                     {blog.category && <span className="category">{blog.category.entryTitle}</span>}
                 </div>
@@ -55,7 +55,7 @@ const BlogItem = () => {
                             case 'image':
                                 return (
                                     <div key={idx} className="inline-img">
-                                        <img className="inline-img__img" src={'http://live.leif.zenhub.contensis.cloud' + field.value.asset.sys.uri} alt={field.value.altText} />
+                                        <img className="inline-img__img" src={'http://live.leif.contensis.cloud' + field.value.asset.sys.uri} alt={field.value.altText} />
                                         <div className="inline-img__content">
                                             <h2 className="inline-img__title">{field.value.caption}</h2>
                                         </div>

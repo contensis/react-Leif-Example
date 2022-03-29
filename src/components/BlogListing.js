@@ -45,7 +45,7 @@ const BlogListing = () => {
           {items.map(item => (
             <li className="blog-card" key={item.sys.id}>
                 <h2 className="blog-card__title mobile"><Link className="blog-card__link" to={`/blog/${item.sys.id}`}>{item.entryTitle}</Link></h2>
-                {item.thumbnailImage && <img className="blog-card__img" src={`http://live.leif.zenhub.contensis.cloud${item.thumbnailImage.asset.sys.uri}`} alt="" />}
+                {item.thumbnailImage && <img className="blog-card__img" src={`http://live.leif.contensis.cloud${item.thumbnailImage.asset.sys.uri}`} alt="" />}
                 <div className="related-blog__content">
                   <h2 className="blog-card__title desktop"><Link className="blog-card__link" to={`/blog/${item.sys.id}`}></Link>{item.entryTitle}</h2>
                   <p className="blog-card__text">{item.leadParagraph}</p>
