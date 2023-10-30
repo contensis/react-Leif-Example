@@ -6,7 +6,6 @@ import ContensisClient from '../connection';
 const BlogItem = () => {
   // Get the ID from the routing params
   let params = useParams();
-  const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [blog, setBlog] = useState(null);
 
@@ -19,16 +18,13 @@ const BlogItem = () => {
       },
       (error) => {
         setIsLoaded(true);
-        setError(error);
+        console.error(error);
       }
     );
   }, [params]);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
+  if (!isLoaded) return null;
+  else
     return (
       <>
         <div className="blog-hero">
@@ -103,7 +99,6 @@ const BlogItem = () => {
         </Link>
       </>
     );
-  }
 };
 
 export default BlogItem;

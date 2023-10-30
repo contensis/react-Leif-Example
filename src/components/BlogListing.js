@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import ContensisClient from '../connection';
 
 const BlogListing = () => {
-  const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
@@ -25,7 +24,7 @@ const BlogListing = () => {
       },
       (error) => {
         setIsLoaded(true);
-        setError(error);
+        console.error(error);
       }
     );
   }, []);
