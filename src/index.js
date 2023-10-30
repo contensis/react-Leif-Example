@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './site.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import BlogListing from './components/BlogListing'
-import BlogItem from './components/BlogItem'
+import BlogListing from './components/BlogListing';
+import BlogItem from './components/BlogItem';
 
 ReactDOM.render(
   <React.StrictMode>
