@@ -4,9 +4,9 @@ This step by step guide will take you through getting your entries from Contensi
 
 ## Requirements
 
-* NPM
-* [Git](https://git-scm.com/downloads)
-* Command line interface knowledge
+- NPM
+- [Git](https://git-scm.com/downloads)
+- Command line interface knowledge
 
 ## Using the demo project
 
@@ -14,31 +14,31 @@ This app will pull in data from the Leif project in Contensis. The React demo is
 
 To get started:
 
-* Clone the Contensis React project
+- Clone the Contensis React project
 
-``` shell
+```shell
 git clone https://gitlab.zengenti.com/ps-projects/leif-example-sites/react-leif-example.git
 ```
 
-* Change directory to the repo directory
+- Change directory to the repo directory
 
-``` shell
+```shell
 cd react-leif-example
 ```
 
-* Install dependencies
+- Install dependencies
 
-``` shell
+```shell
 npm install
 ```
 
-* Run it
+- Run it
 
-``` shell
+```shell
 npm start
 ```
 
-Go to http://localhost:3000 and view the React app running in your browser.
+Go to http://localhost:3001 and view the React app running in your browser.
 
 ## How it works
 
@@ -46,23 +46,23 @@ Go to http://localhost:3000 and view the React app running in your browser.
 
 The Contensis delivery API helper contains classes to perform the repetitive tasks of retrieving content from the API.
 
-Include an instance of ```contensis-delivery-api``` in index.js:
+Include an instance of `contensis-delivery-api` in index.js:
 
 ```js
 // connection.js
-const { Client } = require("contensis-delivery-api");
+const { Client } = require('contensis-delivery-api');
 ```
 
 ### Connect to the Contensis delivery API
 
 Set the root url of the Contensis CMS, access token, and project you want to use with the delivery API.
 
-``` js
+```js
 // connection.js
 const ContensisClient = Client.create({
-  rootUrl: "<root-url>",
-  accessToken: "<access-token>",
-  projectId: "<project-id>",
+  rootUrl: '<root-url>',
+  accessToken: '<access-token>',
+  projectId: '<project-id>',
 });
 ```
 
@@ -70,7 +70,7 @@ const ContensisClient = Client.create({
 
 ```js
 // connection.js
-export default ContensisClient
+export default ContensisClient;
 ```
 
 ### Get a single blog entry by its id
@@ -93,52 +93,48 @@ Here's a fuller example:
 ```js
 // components/BlogItem.js
 import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import './BlogItem.css';
 // Get the Contensis connection details and connect
 import ContensisClient from '../connection';
 
 const BlogItem = () => {
-    // Get the ID from the routing params
-    let params = useParams();
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [blog, setBlog] = useState(null);
+  // Get the ID from the routing params
+  let params = useParams();
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [blog, setBlog] = useState(null);
 
-    useEffect(() => {
-        // Get the entry by the ID
-        ContensisClient.entries.get({ id: params.blogId, linkDepth: 1 })
-            .then(
-                (result) => {
-                    setBlog(result);
-                    setIsLoaded(true);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
-    }, [params])
+  useEffect(() => {
+    // Get the entry by the ID
+    ContensisClient.entries.get({ id: params.blogId, linkDepth: 1 }).then(
+      (result) => {
+        setBlog(result);
+        setIsLoaded(true);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
+  }, [params]);
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div>Loading...</div>;
-    } else {
-
-        return (
-            <>
-              <h1 className="blog-hero__title">{blog.entryTitle}</h1>
-              <p className="lead">{blog.leadParagraph}</p>
-              ...etc
-            </>
-        )
-    }
-
-}
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <>
+        <h1 className="blog-hero__title">{blog.entryTitle}</h1>
+        <p className="lead">{blog.leadParagraph}</p>
+        ...etc
+      </>
+    );
+  }
+};
 
 export default BlogItem;
-
 ```
 
 ### Get a list of blogs
@@ -171,7 +167,6 @@ import './BlogListing.css';
 // Get the Contensis connection details and connect
 import ContensisClient from '../connection';
 
-
 const BlogListing = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -179,26 +174,25 @@ const BlogListing = () => {
 
   useEffect(() => {
     // Import Query and Op to query the api
-    const { Query, Op } = require("contensis-delivery-api");
+    const { Query, Op } = require('contensis-delivery-api');
     // Create a new query for the latest blog posts
     const blogsQuery = new Query(
-      Op.equalTo("sys.contentTypeId", "blogPost"),
-      Op.equalTo("sys.versionStatus", "latest")
+      Op.equalTo('sys.contentTypeId', 'blogPost'),
+      Op.equalTo('sys.versionStatus', 'latest')
     );
     // Search using the query
-    ContensisClient.entries.search(blogsQuery)
-      .then(
-        (result) => {
-          // Set the items
-          setItems(result.items);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [])
+    ContensisClient.entries.search(blogsQuery).then(
+      (result) => {
+        // Set the items
+        setItems(result.items);
+        setIsLoaded(true);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
+  }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -209,13 +203,19 @@ const BlogListing = () => {
       <>
         <h1 className="blogs__title">Our blogs</h1>
         <ul className="blogs">
-          {items.map(item => (
+          {items.map((item) => (
             <li className="blog-card" key={item.sys.id}>
               <Link to={`/blog/${item.sys.id}`}>
                 <h2 className="blog-card__title mobile">{item.entryTitle}</h2>
-                <img className="blog-card__img" src={`http://live.leif.zenhub.contensis.cloud${item.thumbnailImage.asset.sys.uri}`} alt={item.thumbnailImage.altText} />
+                <img
+                  className="blog-card__img"
+                  src={`http://live.leif.zenhub.contensis.cloud${item.thumbnailImage.asset.sys.uri}`}
+                  alt={item.thumbnailImage.altText}
+                />
                 <div className="related-blog__content">
-                  <h2 className="blog-card__title desktop">{item.entryTitle}</h2>
+                  <h2 className="blog-card__title desktop">
+                    {item.entryTitle}
+                  </h2>
                   <p className="blog-card__text">{item.leadParagraph}</p>
                   <span className="category">{item.category.entryTitle}</span>
                 </div>
@@ -226,8 +226,7 @@ const BlogListing = () => {
       </>
     );
   }
-}
+};
 
 export default BlogListing;
-
 ```
