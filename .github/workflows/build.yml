@@ -1,0 +1,47 @@
+name: Docker - Build and push latest
+
+on:
+  push:
+    branches: ['**']
+    tags-ignore: ['release-*']
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  APP_IMAGE: ghcr.io/${{ github.repository }}/${{ github.ref_name }}/app
+
+jobs:
+  build-latest:
+    name: Build Block
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Converys app image string case
+        id: str
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ env.APP_IMAGE }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log into the container registry ${{ env.REGISTRY }}
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build the Docker image, tag and push to the registry
+        id: build
+        env:
+          DOCKER_TAG: ${{ steps.str.outputs.lowercase }}:build-${{ github.run_number }}
+        run: |
+          echo "Building Docker Image"
+          docker build -f Dockerfile . -t ${{ env.DOCKER_TAG }}
+          echo "Built Successfully"
+          echo "Pushing Docker Image"
+          docker push ${{ env.DOCKER_TAG }}
+          echo "Pushed Successfully"
+        shell: bash
