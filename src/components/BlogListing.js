@@ -29,6 +29,9 @@ const BlogListing = () => {
     );
   }, []);
 
+  const imageHost = `http://live-${process.env.REACT_APP_ALIAS}.cloud.contensis.com`;
+  console.log(imageHost);
+
   if (!isLoaded) return null;
   else
     return (
@@ -45,7 +48,7 @@ const BlogListing = () => {
               {item.thumbnailImage && (
                 <img
                   className="blog-card__img"
-                  src={`http://live.leif.contensis.cloud${item.thumbnailImage.asset.sys.uri}`}
+                  src={`${imageHost}${item.thumbnailImage.asset.sys.uri}`}
                   alt=""
                 />
               )}

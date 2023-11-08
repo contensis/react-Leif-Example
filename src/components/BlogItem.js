@@ -23,6 +23,8 @@ const BlogItem = () => {
     );
   }, [params]);
 
+  const imageHost = `http://live-${process.env.REACT_APP_ALIAS}.cloud.contensis.com`;
+
   if (!isLoaded) return null;
   else
     return (
@@ -32,10 +34,7 @@ const BlogItem = () => {
           {blog.thumbnailImage && (
             <img
               className="blog-hero__img"
-              src={
-                'http://live.leif.contensis.cloud' +
-                blog.thumbnailImage.asset.sys.uri
-              }
+              src={`${imageHost}${blog.thumbnailImage.asset.sys.uri}`}
               alt={blog.thumbnailImage.altText}
             />
           )}
@@ -44,10 +43,7 @@ const BlogItem = () => {
           {blog.author && (
             <img
               className="profile__img"
-              src={
-                'http://live.leif.contensis.cloud' +
-                blog.author.photo.asset.sys.uri
-              }
+              src={`${imageHost}${blog.author.photo.asset.sys.uri}`}
               alt={blog.author.photo.altText}
             />
           )}
@@ -75,10 +71,7 @@ const BlogItem = () => {
                   <div key={idx} className="inline-img">
                     <img
                       className="inline-img__img"
-                      src={
-                        'http://live.leif.contensis.cloud' +
-                        field.value.asset.sys.uri
-                      }
+                      src={`${imageHost}${field.value.asset.sys.uri}`}
                       alt={field.value.altText}
                     />
                     <div className="inline-img__content">

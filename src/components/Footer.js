@@ -38,7 +38,7 @@ const Footer = () => {
             {/* <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.--> */}
             <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
           </svg>
-          <span class="sr-only">Conteniss Youtube</span>
+          <span className="sr-only">Conteniss Youtube</span>
         </a>
         <a href="https://www.linkedin.com/showcase/contensis">
           <svg
@@ -52,13 +52,13 @@ const Footer = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M20 19H16.9231V13.3967C16.9231 11.8596 16.2715 11.0022 15.1031 11.0022C13.8315 11.0022 13.0769 11.8956 13.0769 13.3967V19H10V8.59243H13.0769V9.76288C13.0769 9.76288 14.0423 8 16.2177 8C18.3938 8 20 9.3818 20 12.2415C20 15.1004 20 19 20 19ZM5.50031 6C4.67151 6 4 5.32819 4 4.4997C4 3.67181 4.67151 3 5.50031 3C6.32849 3 7 3.67181 7 4.4997C7.00061 5.32819 6.32849 6 5.50031 6ZM4 19H7V9H4V19Z"
               fill="#2B2F51"
             />
           </svg>
-          <span class="sr-only">Contensis LinkedIn</span>
+          <span className="sr-only">Contensis LinkedIn</span>
         </a>
         <a href="https://twitter.com/Contensis?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
           <svg
@@ -73,7 +73,7 @@ const Footer = () => {
             {/* <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
             <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
           </svg>
-          <span class="sr-only">Contensis Twitter</span>
+          <span className="sr-only">Contensis Twitter</span>
         </a>
       </div>
       <div className="footer__copyright">
